@@ -1,8 +1,9 @@
 #!/usr/bin/python
 '''preamble: 
-1) read input file (semi-colon delimited list of fields)
-2) format data
-3) and submit to Sync API endpoint 
+Take input arg
+If arg URL open & convert to file, else directly treat as file
+Operate on file, transform into JSON
+Submit to Sync API endpoint 
 
 reference: POST /api/v1/<Publisher_API_KEY>/sync_customers/ HTTP/1.1
 https://doc.agent.ai/developer/integrations/#customer-information-sync-api
@@ -11,6 +12,7 @@ https://doc.agent.ai/developer/integrations/#customer-information-sync-api
 import sys
 import json
 import requests
+import StringIO
 import base64
 
 # CONSTANTS...SETTABLE OPTIONS FOR DIFFERENT CONFIGURATIONS
@@ -19,7 +21,12 @@ SYNC_SERVER = 'my.agent.ai' #prod
 PUBLISHER_ADMIN_USERNAME = 'admin@company.com'
 PUBLISHER_ADMIN_PASSWORD = 'changeme'
 
-input_file = open(sys.argv[1], 'r')
+in_obj = sys.argv[1]
+if (in_obj.startswith('http')): #it's a URL to a remote file
+	r = requests.get(in_obj)
+	input_file = StringIO.StringIO(r.content)
+else: #it's a local file
+	input_file = open(sys.argv[1], 'r')
 toss = input_file.readline() #toss header
 keys = ['id','last_name']
 customers = []
