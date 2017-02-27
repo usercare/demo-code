@@ -36,12 +36,12 @@ HTTP_BASIC_AUTHORIZATION = base64.b64encode(PUBLISHER_ADMIN_USERNAME + ':' + PUB
 
 for line in input_file:
 	line = line.rstrip()
-	line = line.decode('latin-1') #spanish,italian,brazilian,mexican
-	cust_list = line.split(";")
-	cust_obj = dict(zip(keys, cust_list)) #gets 2 of 3
-	blk = {"blacklisted":cust_list[-1]} #grabs last
-	cust_obj["properties"] = blk
-	customers.append(cust_obj)
+    line = line.decode('latin-1') #spanish,italian,brazilian,mexican
+    cust_list = line.split(";")
+    cust_obj = dict(zip(keys, cust_list)) #gets 2 of 3
+    b_a = {"blacklisted":cust_list[-2],"active":cust_list[-1]} #grabs 2nd to last & last
+    cust_obj["properties"] = b_a 
+    customers.append(cust_obj)
 
 all_customers = {"customers":customers}
 all_customers_json = json.dumps(all_customers)
