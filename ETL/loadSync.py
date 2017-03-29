@@ -35,7 +35,7 @@ url = "https://" + SYNC_SERVER + "/api/v1/" + API_KEY + "/sync_customers/"
 HTTP_BASIC_AUTHORIZATION = base64.b64encode(PUBLISHER_ADMIN_USERNAME + ':' + PUBLISHER_ADMIN_PASSWORD)
 
 for line in input_file:
-	line = line.rstrip()
+    line = line.rstrip()
     line = line.decode('latin-1') #spanish,italian,brazilian,mexican
     cust_list = line.split(";")
     cust_obj = dict(zip(keys, cust_list)) #gets 2 of 3
@@ -44,7 +44,7 @@ for line in input_file:
     customers.append(cust_obj)
 
 all_customers = {"customers":customers}
-all_customers_json = json.dumps(all_customers)
+all_customers_json = json.dumps(all_customers,ensure_ascii=False).encode('latin-1') #save it to database properly encoded
 #print all_customers_json
 input_file.close()
 #sys.exit(0)
