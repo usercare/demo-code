@@ -22,6 +22,11 @@ PUBLISHER_ADMIN_USERNAME = 'admin@company.com'
 PUBLISHER_ADMIN_PASSWORD = 'changeme'
 CHUNK_SIZE = 400000 #current limit of API
 
+if len(sys.argv)<3:
+    print "Error: You must include the input file name & app group name as command-line args."
+    print "Usage: python %s <input_file> <app_group_name>" % sys.argv[0]
+    sys.exit(1)
+
 in_obj = sys.argv[1]
 if (in_obj.startswith('http')): #it's a URL to a remote file
 	r = requests.get(in_obj)
