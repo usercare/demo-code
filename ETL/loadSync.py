@@ -29,6 +29,7 @@ if (in_obj.startswith('http')): #it's a URL to a remote file
 else: #it's a local file
 	input_file = open(sys.argv[1], 'r')
 toss = input_file.readline() #toss header
+app_group_name = sys.argv[2]
 keys = ['id','last_name']
 url = "https://" + SYNC_SERVER + "/api/v1/" + API_KEY + "/sync_customers/"
 # The authentication header for the web service
@@ -47,16 +48,16 @@ while readChunk:
         cust_obj.update(prop_list)
         customers.append(cust_obj)
 
-    all_customers = {"customers":customers}
-    all_customers_json = json.dumps(all_customers,ensure_ascii=False).encode('latin-1') #save it back to database with proper encoding, ensure_ascii defaults to True
-    #print all_customers_json
+    payload = {"app_group": app_group_name, "customers":customers}
+    payload_json = json.dumps(payload,ensure_ascii=False).encode('latin-1') #save it back to database with proper encoding, ensure_ascii defaults to True
+    #print payload_json
     #sys.exit(0)
     headers = {
         'content-type': "application/json",
         'cache-control': "no-cache",
         'authorization': "Basic " + HTTP_BASIC_AUTHORIZATION
     }
-    response = requests.request("POST", url, data=all_customers_json, headers=headers)
+    response = requests.request("POST", url, data=payload_json, headers=headers)
     print(response.text)
     readChunk = input_file.readlines(CHUNK_SIZE) #read in next chunk
 
