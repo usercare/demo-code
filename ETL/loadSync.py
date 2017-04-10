@@ -2,7 +2,7 @@
 '''preamble: 
 Take input arg
 If arg URL open & convert to file, else directly treat as file
-Operate on file, transform into JSON
+Operate on file, chunking input to avoid overloading API, transform into JSON
 Submit to Sync API endpoint 
 
 reference: POST /api/v1/<Publisher_API_KEY>/sync_customers/ HTTP/1.1
@@ -20,6 +20,7 @@ API_KEY = 'change_me' #prod
 SYNC_SERVER = 'my.agent.ai' #prod
 PUBLISHER_ADMIN_USERNAME = 'admin@company.com'
 PUBLISHER_ADMIN_PASSWORD = 'changeme'
+CHUNK_SIZE = 400000 #current limit of API
 
 in_obj = sys.argv[1]
 if (in_obj.startswith('http')): #it's a URL to a remote file
@@ -29,31 +30,34 @@ else: #it's a local file
 	input_file = open(sys.argv[1], 'r')
 toss = input_file.readline() #toss header
 keys = ['id','last_name']
-customers = []
 url = "https://" + SYNC_SERVER + "/api/v1/" + API_KEY + "/sync_customers/"
 # The authentication header for the web service
 HTTP_BASIC_AUTHORIZATION = base64.b64encode(PUBLISHER_ADMIN_USERNAME + ':' + PUBLISHER_ADMIN_PASSWORD)
+readChunk = input_file.readlines(CHUNK_SIZE)
 
-for line in input_file:
-    line = line.rstrip()
-    line = line.decode('latin-1') #spanish,italian,brazilian,mexican
-    cust_list = line.split(";")
-    cust_obj = dict(zip(keys, cust_list)) #gets 2 of 3
-    b_a = {"blacklisted":cust_list[-2],"active":cust_list[-1]} #grabs 2nd to last & last
-    cust_obj["properties"] = b_a 
-    customers.append(cust_obj)
+while readChunk:
+    customers = [] #reset customer list
+    for line in readChunk:
+        line = line.rstrip()
+        line = line.decode('latin-1') #spanish,italian,brazilian,mexican
+        cust_list = line.split(";")
+        cust_obj = dict(zip(keys, cust_list)) #gets first 2
+        prop_list={}
+        prop_list['properties'] = {"blacklisted":cust_list[-3],"member_status":cust_list[-2],"member_modified":cust_list[-1]}
+        cust_obj.update(prop_list)
+        customers.append(cust_obj)
 
-all_customers = {"customers":customers}
-all_customers_json = json.dumps(all_customers,ensure_ascii=False).encode('latin-1') #save it to database properly encoded
-#print all_customers_json
+    all_customers = {"customers":customers}
+    all_customers_json = json.dumps(all_customers,ensure_ascii=False).encode('latin-1') #save it back to database with proper encoding, ensure_ascii defaults to True
+    #print all_customers_json
+    #sys.exit(0)
+    headers = {
+        'content-type': "application/json",
+        'cache-control': "no-cache",
+        'authorization': "Basic " + HTTP_BASIC_AUTHORIZATION
+    }
+    response = requests.request("POST", url, data=all_customers_json, headers=headers)
+    print(response.text)
+    readChunk = input_file.readlines(CHUNK_SIZE) #read in next chunk
+
 input_file.close()
-#sys.exit(0)
-headers = {
-	'content-type': "application/json",
-	'cache-control': "no-cache",
-	'authorization': "Basic " + HTTP_BASIC_AUTHORIZATION
-	}
-
-response = requests.request("POST", url, data=all_customers_json, headers=headers)
-
-print(response.text)
