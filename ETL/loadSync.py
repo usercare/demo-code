@@ -40,6 +40,10 @@ url = "https://" + SYNC_SERVER + "/api/v1/" + API_KEY + "/sync_customers/"
 # The authentication header for the web service
 HTTP_BASIC_AUTHORIZATION = base64.b64encode(PUBLISHER_ADMIN_USERNAME + ':' + PUBLISHER_ADMIN_PASSWORD)
 readChunk = input_file.readlines(CHUNK_SIZE)
+updated = 0
+created = 0
+errored = 0
+total = 0
 
 while readChunk:
     customers = [] #reset customer list
@@ -62,8 +66,16 @@ while readChunk:
         'cache-control': "no-cache",
         'authorization': "Basic " + HTTP_BASIC_AUTHORIZATION
     }
-    response = requests.request("POST", url, data=payload_json, headers=headers)
-    print(response.text)
-    readChunk = input_file.readlines(CHUNK_SIZE) #read in next chunk
-
+    try:
+        response = requests.request("POST", url, data=payload_json, headers=headers)
+        print(response.text)
+        counts = json.loads(response.text)
+        updated += counts['updated_count']
+        created += counts['created_count']
+        errored += counts['error_count']
+        total = updated + created + errored
+        readChunk = input_file.readlines(CHUNK_SIZE) #read in next chunk
+    except requests.exceptions.ConnectionError:
+        print("Error connecting to API endpoint " + url + ". Reconnecting...")
+print("TOTALS updated: {} created: {} errored: {} all: {}".format(updated, created, errored, total))
 input_file.close()
