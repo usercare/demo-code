@@ -1,0 +1,692 @@
+/* All CSS settings defaulted. Modify them to customize and match your website's color scheme */
+
+/* Please append '!important' at all your custom styles. */
+
+/* Web client-wide styles: */
+
+.usercare, .usercare * {
+    font-family: sans-serif;
+    font-size: 100%;
+    font-weight: normal;
+    color: #000;
+}
+
+.usercare button,
+.usercare input,
+.usercare textarea {
+    margin: 0 !important;
+}
+
+/* Web client positioning: */
+.usercare .chatbox {
+	position: fixed;
+	bottom: 15px;
+	right: 15px;
+        width: 60px;
+        height: 60px;
+        border: 0;
+}
+
+/* Web client button styling and positioning: */
+.usercare .chatbox .btn-chat {
+	-webkit-transition: -webkit-transform .3s ease-in-out, opacity .3s ease-in-out, visibility .3s ease-in-out, height .3s ease-in-out, padding .3s ease-in-out, .3s .3s ease-in-out, ease-in-out .3s ease-in-out;
+	transition: transform .3s ease-in-out, opacity .3s ease-in-out, visibility .3s ease-in-out, height .3s ease-in-out, padding .3s ease-in-out, .3s .3s ease-in-out, ease-in-out .3s ease-in-out;
+	display: block;
+	width: 60px;
+	height: 60px;
+        padding: 8px;
+	background: #C89D11 !important;
+	font-size: 12px;
+	box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, .3);
+	border-radius: 50%;
+}
+
+.usercare .chatbox .btn-chat div {
+        background: transparent url('https://cdn.agent.ai/agentai/img/webc/webchat-AI_Icon_Transparent.png') no-repeat;
+        background-size: 44px 44px;
+	height: 44px;
+	width: 44px;
+}
+
+/* Web client button on-hover animation: */
+.usercare .hvr-neon {
+	display: inline-block;
+	vertical-align: middle;
+}
+
+.usercare .hvr-neon:hover {
+	-webkit-animation: 2s linear infinite usercare-hvr-neon;
+	animation: 2s linear infinite usercare-hvr-neon;
+}
+
+@-webkit-keyframes usercare-hvr-neon {
+        0% {
+                background-color: #C89D11 !important;
+                -webkit-box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, .3);
+        }
+        50% {
+                background-color: #C89D11;
+                -webkit-box-shadow: 0 0 18px #BB523D !important;
+        }
+        100% {
+                background-color: #C89D11 !important;
+                -webkit-box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, .3);
+        }
+}
+
+@keyframes usercare-hvr-neon {
+        0% {
+                background-color: #C89D11 !important;
+                box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, .3);
+        }
+        50% {
+                background-color: #C89D11 !important;
+                box-shadow: 0 0 18px #BB523D !important;
+        }
+        100% {
+                background-color: #C89D11 !important;
+                box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, .3);
+        }
+}
+
+/* Unread messages counter: */
+.usercare .uc-unread {
+        position: absolute;
+        bottom: -7px;
+        left: -7px;
+        width: 18px;
+        height: 18px;
+        padding: 2px;
+        border-radius: 13px;
+        font-size: 11px;
+        line-height: 19px;
+        text-align: center;
+        background: red;
+        color: white;
+}
+
+/* Helpcenter/notification popups' styling: */
+.usercare .uc-popup {
+	-webkit-transition: opacity .3s ease-in-out, visibility .3s ease-in-out;
+	transition: opacity .3s ease-in-out, visibility .3s ease-in-out;
+	box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, .3);
+	border: 1px solid #C89D11 !important;
+	border-radius: 2px;
+	padding: 35px 10px 10px;
+	position: absolute;
+	right: 0;
+	bottom: 120%;
+        background: #fff;
+}
+
+/* Notification popup: */
+.usercare .uc-popup.notification {
+        right: 75px;
+        bottom: 0;
+}
+
+.usercare .uc-popup p {
+	font-size: 12px;
+	line-height: 14px;
+	margin: 0;
+}
+
+.usercare .uc-popup.notification p {
+        word-wrap: break-word;
+}
+
+/* Popup header styles: */
+.usercare .close-holder {
+	background: #C89D11 !important;
+	width: 100%;
+	padding: 5px;
+	left: 0;
+	top: 0;
+	position: absolute;
+	box-sizing: border-box;
+}
+
+.usercare .close-holder span {
+	color: #fff;
+	font-size: 15px;
+	position: relative;
+}
+
+/* Popup close button: */
+.usercare .close-holder .uc-close {
+	position: absolute;
+	right: 4px;
+	top: 4px;
+	width: 19px;
+	height: 19px;
+        font-size: 16px;
+        cursor: pointer;
+        cursor: hand;
+}
+
+/* Main web client panel: */
+.usercare .popup-chat {
+	-webkit-transition: opacity .3s ease-in-out, visibility .3s ease-in-out;
+	transition: opacity .3s ease-in-out, visibility .3s ease-in-out;
+	position: absolute;
+	min-height: 550px;
+	right: 0;
+	bottom: 112%;
+	background: #fff;
+	border: 1px solid #C89D11 !important;
+	border-radius: 2px;
+	box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, .3);
+}
+
+/* Web client header: */
+.usercare .uc-header {
+	background: #C89D11 !important;
+	padding: 6px 15px 4px;
+	overflow: hidden;
+	text-align: center;
+        border: 0;
+}
+
+/* Web client header close icon: */
+.usercare .uc-header .uc-close {
+        position: absolute;
+        top: 20px;
+        right: 15px;
+        width: 26px;
+        height: 26px;
+        cursor: pointer;
+        cursor: hand;
+}
+
+.usercare .uc-header .uc-close .uc-close-icon {
+        background: transparent url('https://cdn.agent.ai/agentai/img/webc/webchat-close.png') no-repeat;
+        background-size: 26px 26px;
+        height: 26px;
+        width: 26px;
+        opacity: 0.65;
+	-webkit-transition: opacity .3s linear;
+	transition: opacity .3s linear;
+        display: block;
+}
+
+.usercare .uc-header .uc-close:hover .uc-close-icon {
+	opacity: 1;
+}
+
+/* User logo/name: */
+.usercare .uc-header .uc-user {
+	display: inline-block;
+}
+
+.usercare .uc-header .uc-user .uc-avatar {
+	display: block;
+	border-radius: 50%;
+	border: 2px solid #BB523D !important;
+	width: 32px;
+	height: 32px;
+	margin: 0 auto -1px;
+        background-image: url('https://cdn.agent.ai/agentai/img/webc/webchat-person-64x64.png');
+        background-size: 32px 32px;
+        background-repeat: no-repeat;
+}
+
+.usercare .uc-header .uc-user .uc-user-name {
+	font-size: 12px;
+}
+
+.usercare .uc-header .uc-user-name {
+	color: #6C9A7F !important;
+}
+
+/* Web client message styling. */
+
+/* Converstion date: */
+.usercare .chat-message .date time {
+	font-size: 12px;
+	text-align: center;
+	display: block;
+	color: #999;
+	margin: 0 0 10px;
+}
+
+/* Message bubble: */
+.usercare .chat-message .bubble {
+	display: inline-block;
+	clear: both;
+	margin: 0 0 10px;
+	max-width: 250px;
+}
+
+.usercare .chat-message .bubble.mine {
+	float: right;
+}
+
+.usercare .chat-message .bubble.mine p {
+	background: #6C9A7F !important;
+	text-align: left;
+}
+
+/* Link in a message: */
+.usercare .chat-message .bubble.mine p a {
+        color: lightcyan;
+}
+
+/* Timestamp of user's own messages: */
+.usercare .chat-message .bubble.mine time {
+	float: right;
+}
+
+.usercare .chat-message .bubble.other {
+	float: left;
+}
+
+.usercare .chat-message .bubble.other p {
+	background: #C89D11 !important;
+}
+
+/* System and welcome messages: */
+.usercare .chat-message .bubble.other.system,
+.usercare .chat-message .bubble.other.date,
+.usercare .chat-message .bubble.welcome {
+        display: block;
+        float: none;
+        width: 250px;
+        margin-left: auto;
+        margin-right: auto;
+        text-align: center;
+}
+
+.usercare .chat-message .bubble.other.system p {
+        background: #eda59e;
+}
+
+.usercare .chat-message .bubble.other.date p {
+        background: #C89D11 !important;
+}
+
+.usercare .chat-message .bubble.welcome p {
+        background: #C89D11 !important;
+}
+
+.usercare .chat-message .bubble p {
+	padding: 10px;
+	border-radius: 5px;
+	margin: 0 0 5px;
+	color: #000;
+	font-size: 12px;
+	line-height: 14px;
+}
+
+/* Image in a message: */
+.usercare .chat-message .bubble img {
+        max-width: 100%;
+        max-height: 500px;
+        margin-top: 10px;
+}
+
+.usercare .chat-message .bubble img.captionless {
+        margin-top: 0;
+}
+
+/* Quick response and card deck messages: */
+.usercare .chat-message .bubble p.quickresponse {
+        padding-bottom: 0;
+}
+
+.usercare .chat-message .bubble p span.reply {
+        display: block;
+        border: 2px solid blue;
+        background: white;
+        color: blue;
+        text-align: center;
+        margin-top: 15px;
+        padding: 5px;
+        cursor: hand;
+        cursor: pointer;
+}
+
+.usercare .chat-message .bubble p span.reply-container {
+        display: block;
+        margin-top: 10px;
+}
+
+.usercare .chat-message .bubble p span.reply-container span.reply {
+        display: inline-block;
+        margin: 0 10px 10px 0;
+}
+
+.usercare .chat-message .bubble p span.reply:hover {
+        background: #82cce4;
+}
+
+.usercare .chat-message .bubble p span.reply.selected,
+.usercare .chat-message .bubble p span.reply.selected span {
+        background: blue;
+        color: white !important;
+        cursor: default !important;
+}
+
+.usercare .chat-message .bubble p span.reply.disabled,
+.usercare .chat-message .bubble p span.reply.disabled span {
+        background: lightgrey;
+        color: grey !important;
+        cursor: default !important;
+}
+
+.usercare .chat-message .bubble p span.reply-container span.reply.disabled {
+        border: 2px solid grey;
+}
+
+/* Carddeck-specific styles: */
+.usercare .chat-message .bubble p.carddeck {
+        border: 1px solid grey;
+        padding: 0px;
+}
+
+.usercare .chat-message .bubble p span.cardcontainer-outer {
+        display: block;
+        width: 230px;
+        position: relative;
+}
+
+.usercare .chat-message .bubble p span.cardcontainer-outer span.cardnav-prev,
+.usercare .chat-message .bubble p span.cardcontainer-outer span.cardnav-next {
+        display: block;
+        width: 16px;
+        height: 16px;
+        border: 1px solid grey;
+        border-radius: 3px;
+        position: absolute;
+        top: calc(50% - 8px);
+        background-size: 16px 16px;
+        background-color: #C89D11 !important;
+        background-repeat: no-repeat;
+        cursor: pointer;
+        cursor: hand;
+        z-index: 1;
+}
+
+/* Left/right arrows of a carddeck: */
+.usercare .chat-message .bubble p span.cardcontainer-outer span.cardnav-prev {
+        background-image: url('https://cdn.agent.ai/agentai/img/webc/webchat-arrow-left-bold.png');
+        left: -10px;
+}
+
+.usercare .chat-message .bubble p span.cardcontainer-outer span.cardnav-next {
+        background-image: url('https://cdn.agent.ai/agentai/img/webc/webchat-arrow-right-bold.png');
+        right: -10px;
+}
+
+.usercare .chat-message .bubble p span.card {
+        padding: 10px 10px 0 10px;
+}
+
+.usercare .chat-message .bubble p span.card a {
+        text-decoration: none;
+}
+
+.usercare .chat-message .bubble p span.card .title {
+        display: block;
+        font-weight: bold;
+        font-size: 1.2em;
+        color: black;
+}
+
+.usercare .chat-message .bubble p span.card .subtitle,
+.usercare .chat-message .bubble p span.card .domain {
+        display: block;
+        margin-top: 5px;
+        color: black;
+}
+
+.usercare .chat-message .bubble p span.card .domain {
+        color: grey;
+}
+
+.usercare .chat-message .bubble p span.card img {
+        max-width: 230px;
+        margin-left: -10px;
+        position: relative;
+        top: 4px;
+        margin-top: 5px;
+}
+
+.usercare .chat-message .bubble p span.card span.reply {
+        display: block;
+        border: 0;
+        border-top: 1px solid grey;
+        color: black;
+        text-align: center;
+        padding: 10px 5px;
+        margin: 0;
+        cursor: hand;
+        cursor: pointer;
+        margin-left: -10px;
+        margin-right: -10px;
+        border-bottom-left-radius: 5px;
+        border-bottom-right-radius: 5px;
+}
+
+/* Timestamp of the message: */
+.usercare .chat-message .bubble time {
+	font-size: 10px;
+	color: #999;
+	display: block;
+}
+
+/* Web client footer: */
+.usercare .uc-footer {
+	border-top: 1px solid #C89D11 !important;
+	background: #6C9A7F !important;
+}
+
+/* Message area: */
+.usercare .uc-footer .uc-textarea {
+	background: #6C9A7F !important;
+	border: none;
+	box-shadow: none;
+	font-size: 13px;
+	color: #000;
+	outline: medium none;
+	padding: 10px 20px 10px 10px;
+	width: calc(100% - 80px);
+        min-height: 55px;
+	height: 100%;
+	max-height: 100px;
+	resize: none;
+	box-sizing: border-box;
+	border-radius: 0;
+	vertical-align: top;
+        overflow-x: hidden;
+        word-wrap: break-word;
+        overflow-y: auto;
+}
+
+.usercare .uc-footer .uc-textarea::-webkit-input-placeholder {
+	color: #C89D11 !important;
+	opacity: 1;
+}
+
+.usercare .uc-footer .uc-textarea::-moz-placeholder {
+	color: #C89D11 !important;
+	opacity: 1;
+}
+
+.usercare .uc-footer .uc-textarea:-ms-input-placeholder {
+	color: #C89D11 !important;
+	opacity: 1;
+}
+
+.usercare .uc-footer .uc-textarea::placeholder {
+	color: #C89D11 !important;
+	opacity: 1;
+}
+
+/* File selector: */
+.usercare .uc-footer .uc-submit, .usercare .uc-footer .uc-file {
+	-webkit-transition: opacity .3s linear;
+	transition: opacity .3s linear;
+	position: absolute;
+	right: 10px;
+	bottom: 15px;
+        width: 26px;
+        height: 26px;
+	opacity: .65;
+        padding: 0;
+	border: none;
+        outline: none;
+	background: transparent;
+        cursor: pointer;
+        cursor: hand;
+}
+
+.usercare .uc-footer .uc-submit:hover, .usercare .uc-footer .uc-file:hover {
+	opacity: 1;
+}
+
+.usercare .uc-footer .uc-submit .send-icon {
+        background: transparent url('https://cdn.agent.ai/agentai/img/webc/webchat-send.png') no-repeat;
+        background-size: 26px 26px;
+        height: 26px;
+        width: 26px;
+        display: block;
+}
+
+.usercare .uc-footer .uc-file {
+        right: 50px;
+        background: transparent url('https://cdn.agent.ai/agentai/img/webc/webchat-paperclip.png') no-repeat;
+        background-size: 26px 26px;
+        overflow: hidden;
+}
+
+.usercare .uc-footer .uc-file input {
+        font-size: 100px;
+        position: absolute;
+        top: 0;
+        left: 0;
+        opacity: 0 !important;
+        cursor: pointer;
+        cursor: hand;
+        font-size: 0;
+        width: 100%;
+        height: 100%;
+}
+
+.usercare .uc-footer .uc-file form {
+        opacity: 0 !important;
+}
+
+/* "File attached" indicator: */
+.usercare .uc-footer .uc-file .uc-indicator {
+        display: none;
+        width: 10px;
+        height: 10px;
+        border-radius: 5px;
+        background-color: red;
+        color: red;
+        position: absolute;
+        bottom: 0px;
+        right: 3px;
+        cursor: pointer;
+        cursor: hand;
+}
+
+.usercare .uc-footer .uc-file.attached .uc-indicator {
+        display: block;
+}
+
+.usercare .uc-footer .uc-file .uc-indicator:hover {
+        background-color: pink;
+}
+
+/* User details overlay: */
+.usercare .uc-form {
+        background: rgba(0, 0, 0, 0.75);
+        padding: 10px;
+}
+
+.usercare .uc-form .uc-form-item {
+        margin-bottom: 10px;
+}
+
+.usercare .uc-form .uc-form-item input,
+.usercare .uc-form .uc-form-item button {
+        padding: 5px !important;
+        width: calc(100% - 15px) !important;
+}
+
+.usercare .uc-form .uc-form-item input {
+        background: white !important;
+        height: 1em !important;
+        font-family: sans-serif;
+        font-size: 100%;
+        line-height: 1.15;
+        margin: 0 !important;
+        border: 2px solid rgb(238, 238, 238) !important;
+}
+
+.usercare .uc-form .uc-form-item button.update {
+        width: calc(75% - 15px) !important;
+}
+
+.usercare .uc-form .uc-form-item button.cancel {
+        width: calc(25% - 15px) !important;
+}
+
+/* Web client multiresolution tweaks: */
+@media (max-width: 479px) {
+	.usercare .chatbox.active {
+		bottom: 0;
+		left: 0;
+		overflow: hidden;
+		position: fixed;
+		right: 0;
+		top: 0;  
+		width: auto;        
+		height: auto;
+        }
+
+	.usercare .chatbox.active .btn-chat {
+		opacity: 0;
+		visibility: hidden;
+		height: 0;
+		padding: 0;
+	}
+
+	.usercare .chatbox .btn-chat {
+		position: absolute;
+		right: 15px;
+		bottom: 15px;
+	}
+
+	.usercare .popup-chat {
+		box-shadow: none;
+		border-radius: 0;
+		border-width: 1px 0px 4px;
+		bottom: 0;
+		left: 0;
+		height: 100%;
+		min-height: 0;
+		right: 0;
+		top: 0;
+	}
+
+	.usercare .popup-chat {
+		width: 100%;
+	}
+
+	.usercare .chat-message {
+		height: auto;
+		bottom: 60px;
+		left: 0;
+		overflow: auto;
+		padding: 10px;
+		position: absolute;
+		right: 0;
+		top: 63px;
+	}
+
+	.usercare .uc-footer {
+		border-top: none;
+	}
+}
